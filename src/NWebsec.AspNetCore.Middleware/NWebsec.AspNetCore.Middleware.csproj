@@ -3,7 +3,7 @@
   <Import Project="..\common.props" />
   
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFrameworks>netcoreapp3.1;netcoreapp2.1;</TargetFrameworks>
     <VersionPrefix>3.0.0</VersionPrefix>
     <FileVersion>3.0.0.0</FileVersion>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
@@ -18,8 +18,11 @@
     <ProjectReference Include="..\NWebsec.AspNetCore.Core\NWebsec.AspNetCore.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.1'">
+    <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
   <PropertyGroup>
